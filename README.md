@@ -8,7 +8,8 @@
 * LIVEAGENT_BUTTON_ID = <LIVEAGENT_BUTTON_ID>
 * DISABLE_COLLECTSTATIC = 1
 * SSL = True
-* SECRET_KEY = <Random String>
+* SECRET_KEY = <RANDOM STRING>
+
 
 deploy後にマイグレーション
 ```
