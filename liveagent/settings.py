@@ -5,7 +5,7 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-SECRET_KEY = '^7%hva-dai55x*mw*wk7!v(#%3me9y&_a*1+xe+%%vq@8*eo8j'
+SECRET_KEY = os.environ.get('SECRET_KEY', '^7%hva-dai55x*mw*wk7!v(#%3me9y&')
 DEBUG = os.environ.get('DEBUG', None) == 'True'
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 DEV = os.environ.get('DEV', None) == 'True'

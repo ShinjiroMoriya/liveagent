@@ -1,13 +1,14 @@
 # Liveagent API
 
 
-## environ key
+## environ
 * LIVEAGENT_HOST = <LIVEAGENT_HOST>
 * LIVEAGENT_ORGANIZATION_ID = <LIVEAGENT_ORGANIZATION_ID>
 * LIVEAGENT_DEPLOYMENT_ID = <LIVEAGENT_DEPLOYMENT_ID>
 * LIVEAGENT_BUTTON_ID = <LIVEAGENT_BUTTON_ID>
 * DISABLE_COLLECTSTATIC = 1
 * SSL = True
+* SECRET_KEY = <Random String>
 
 deploy後にマイグレーション
 ```
@@ -165,10 +166,3 @@ type: response data
 
 message: response data
 * deleted session
-
-
-## environ key
-* LIVEAGENT_HOST
-* LIVEAGENT_ORGANIZATION_ID
-* LIVEAGENT_DEPLOYMENT_ID
-* LIVEAGENT_BUTTON_ID
