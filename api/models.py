@@ -6,9 +6,9 @@ class LineSession(models.Model):
         db_table = 'line_session'
 
     line_id = models.CharField(max_length=255)
-    liveagent_id = models.CharField(max_length=255)
-    key = models.CharField(max_length=255)
-    affinity_token = models.CharField(max_length=255)
+    liveagent_id = models.CharField(max_length=255, blank=True, null=True)
+    key = models.CharField(max_length=255, blank=True, null=True)
+    affinity_token = models.CharField(max_length=255, blank=True, null=True)
     sequence = models.IntegerField(blank=True, null=True)
     ack = models.IntegerField(blank=True, null=True)
 
@@ -38,4 +38,8 @@ class LineSession(models.Model):
 
     @classmethod
     def delete_session(cls, line_id):
-        cls.objects.filter(line_id=line_id).delete()
+        cls.objects.filter(line_id=line_id).update(**{
+            'key': None,
+            'affinity_token': None,
+            'sequence': 1,
+        })
