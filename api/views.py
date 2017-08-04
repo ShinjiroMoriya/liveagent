@@ -36,6 +36,25 @@ def get_liveagent_session(line_id):
             except:
                 pass
 
+    elif session_obj.get('key') is None:
+        url = st.LIVEAGENT_HOST + '/chat/rest/System/SessionId'
+        headers = {
+            'X-LIVEAGENT-API-VERSION': st.API_VERSION,
+            'X-LIVEAGENT-AFFINITY': 'null',
+        }
+        r = requests.get(url, headers=headers)
+        if r.status_code == 200:
+            res_data = json.loads(r.text)
+            update_data = {
+                'line_id': line_id,
+                'key': res_data.get('key'),
+                'affinity_token': res_data.get('affinityToken'),
+            }
+            try:
+                return LineSession.update_session(update_data)
+            except:
+                pass
+
     return session_obj
 
 
