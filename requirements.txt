@@ -9,5 +9,6 @@ idna==2.5
 psycopg2==2.7.1
 pytz==2017.2
 requests==2.18.1
+timeout-decorator==0.3.3
 urllib3==1.21.1
 whitenoise==3.3.0

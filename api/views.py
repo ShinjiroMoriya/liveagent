@@ -8,6 +8,7 @@ from api.models import LineSession
 from django.views.generic import View
 from django.http import JsonResponse
 from liveagent.process import process_message
+import timeout_decorator
 
 
 class SetupView(View):
@@ -170,6 +171,7 @@ def connect_liveagent(line_id):
         return ['error', ex]
 
 
+@timeout_decorator.timeout(25, use_signals=False)
 def get_message_liveagent(line_id):
     session = LineSession.get_by_line(line_id=line_id)
     if session is None:
@@ -213,13 +215,19 @@ def get_message_liveagent(line_id):
 class LiveagentMessages(SetupView):
     @staticmethod
     def post(request):
-        received_data = json.loads(request.body)
-        line_id = received_data.get('line_id')
-        res_type, result = get_message_liveagent(line_id)
-        return JsonResponse({
-            'type': res_type,
-            'message': result
-        }, status=200)
+        try:
+            received_data = json.loads(request.body)
+            line_id = received_data.get('line_id')
+            res_type, result = get_message_liveagent(line_id)
+            return JsonResponse({
+                'type': res_type,
+                'message': result
+            }, status=200)
+        except:
+            return JsonResponse({
+                'type': None,
+                'message': None
+            }, status=200)
 
 
 class LiveagentClose(SetupView):
