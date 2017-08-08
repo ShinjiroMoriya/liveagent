@@ -40,7 +40,8 @@ def process_message(message):
         pass
 
     elif message.get('type') == 'QueueUpdate':
-        pass
+        res_type = 'ok'
+        return [res_type, '接続しました。']
 
     elif message.get('type') == 'FileTransfer':
         pass
